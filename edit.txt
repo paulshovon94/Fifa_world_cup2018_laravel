@@ -1,0 +1,19 @@
+	@if(!Auth::guest())
+		@if(Auth::user()->id == $post->user_id)
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<a href="/posts/{{$post->id}}/edit" class="btn"><button type="button" class="btn btn-default">Edit</button></a>
+					</div>
+					<div class="col-sm-6 right">
+						
+						{!! Form::open(['action'=>['PostsController@destroy',$post->id],'method'=>'POST','class'=>'pull-right'])!!}
+							{{Form::hidden('_method','DELETE')}}
+							{{Form::submit('delete',['class'=>'btn btn-danger'])}}
+						{!!Form::close()!!}
+					</div>
+				</div>
+			</div>
+		@endif
+	@endif
+//edit and delete
